@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ZHQDiscoverHotViewController : UITableViewController
+@property (nonatomic,strong) UIViewController *pareViewController;
 
 @property (nonatomic, strong) NSArray *urlArray;
 @end

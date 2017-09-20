@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ZHQSubscribeViewController : UITableViewController
-
+@property (nonatomic,strong) UIViewController *pareViewController;
 @end

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ZHQDiscoverListModel : NSObject
+@property (nonatomic, copy) NSString *Id;
 @property (nonatomic, copy) NSString *allow_video;
 @property (nonatomic, copy) NSString *channels;
 @property (nonatomic, copy) NSString *intro;

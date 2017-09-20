@@ -8,7 +8,12 @@
 //
 
 #import "ZHQDiscoverListModel.h"
+#import <MJExtension.h>
 
 @implementation ZHQDiscoverListModel
 
++(NSDictionary *)mj_replacedKeyFromPropertyName
+{
+    return @{@"Id":@"id"};
+}
 @end

@@ -70,6 +70,8 @@
 {
     if (!_hotVC) {
         _hotVC = [[ZHQDiscoverHotViewController alloc]init];
+        _subVC.pareViewController = self;
+        _hotVC.view.frame = CGRectMake(0, -2, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
     return _hotVC;
 }
@@ -77,6 +79,9 @@
 {
     if (!_subVC) {
         _subVC = [[ZHQSubscribeViewController alloc]init];
+        _subVC.pareViewController = self;
+        _subVC.view.frame = CGRectMake(0, -2, SCREEN_WIDTH, SCREEN_HEIGHT);
+
     }
     return _subVC;
 }

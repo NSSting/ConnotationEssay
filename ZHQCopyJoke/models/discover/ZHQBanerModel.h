@@ -10,9 +10,9 @@
 
 @interface ZHQBanerModel : NSObject
 
-@property (nonatomic, copy) NSString *schema_url;
-@property (nonatomic, copy) NSString *banner_url;
 @property (nonatomic, copy) NSArray *url_list;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *url;
 
 
 @end

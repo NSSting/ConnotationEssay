@@ -72,8 +72,8 @@
     self.styleLab.layer.borderColor = [UIColor brownColor].CGColor;
     [self.contentView addSubview:self.styleLab];
     
-    self.videoView = [[UIImageView alloc]init];
-    [self.contentView addSubview:self.videoView];
+//    self.videoView = [[UIImageView alloc]init];
+//    [self.contentView addSubview:self.videoView];
 
     //布局
    
@@ -106,6 +106,7 @@
         make.top.equalTo(self.contentLab.mas_bottom).offset( 10);
         make.left.equalTo(self.contentLab.mas_left);
         make.height.mas_equalTo(20);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
         
     }];
    }
@@ -119,20 +120,20 @@
     self.styleLab.text = [NSString stringWithFormat:@"  %@  ",groupModel.category_name];
     ZHQImageModel *imageModel = groupModel.large_image;
     
-    if (imageModel.url_list.count > 0) {
-        NSLog(@"-width==>%@--height>>%@--url--->%@",imageModel.width,imageModel.height,imageModel.url_list[0][@"url"]);
-        [self.videoView sd_setImageWithURL:[NSURL URLWithString:imageModel.url_list[0][@"url"]]];
-        [self.videoView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView.mas_left).offset(10);
-            make.right.equalTo(self.contentView.mas_right).offset(-10);
-            make.top.equalTo(self.styleLab.mas_bottom).offset(5);
-           make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
-        }];
-    } else {
-        [self.styleLab mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
-        }];
-    }
+//    if (imageModel.url_list.count > 0) {
+//        NSLog(@"-width==>%@--height>>%@--url--->%@",imageModel.width,imageModel.height,imageModel.url_list[0][@"url"]);
+//        [self.videoView sd_setImageWithURL:[NSURL URLWithString:imageModel.url_list[0][@"url"]]];
+//        [self.videoView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(self.contentView.mas_left).offset(10);
+//            make.right.equalTo(self.contentView.mas_right).offset(-10);
+//            make.top.equalTo(self.styleLab.mas_bottom).offset(5);
+//           make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+//        }];
+//    } else {
+//        [self.styleLab mas_updateConstraints:^(MASConstraintMaker *make) {
+//            make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+//        }];
+//    }
 }
 - (UIButton *)userPhoto
 {

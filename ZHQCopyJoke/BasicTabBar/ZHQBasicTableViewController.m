@@ -13,6 +13,8 @@
 #import "ZHQGroupModel.h"
 #import <MJExtension.h>
 #import "ZHQUserInfoViewController.h"
+#import "ZHQDiscoverHotViewController.h"
+
 @interface ZHQBasicTableViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;

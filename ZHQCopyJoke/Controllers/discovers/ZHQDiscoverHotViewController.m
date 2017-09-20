@@ -11,10 +11,15 @@
 #import "ZHQDiscoverHotCell.h"
 #import <SDCycleScrollView.h>
 #import "ZHQNetWorkingManager+ZHQDiscover.h"
-
-
-
+#import "ZHQDiscoverListModel.h"
+#import <MJExtension.h>
+#import "ZHQBanerModel.h"
 @interface ZHQDiscoverHotViewController () <UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate>
+@property (nonatomic,strong) NSMutableArray *listArray;
+@property (nonatomic,strong) NSMutableArray *bannersArray;
+@property (nonatomic,strong) NSMutableArray *bannerstitle;
+
+@property (nonatomic, strong) SDCycleScrollView *scrolView ;
 
 @end
 
@@ -25,21 +30,42 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[ZHQDiscoverHotCell class] forCellReuseIdentifier:@"hotCell"];
-    [self setUpHeaderView];
     [self loadData];
+    [self setUpHeaderView];
 }
 - (void)setUpHeaderView
 {
-    SDCycleScrollView *scrolView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 300) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    scrolView.imageURLStringsGroup =  self.urlArray;
-    scrolView.autoScrollTimeInterval = 5;
-    self.tableView.tableHeaderView = scrolView;
+    self.scrolView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    _scrolView.autoScrollTimeInterval = 5;
+    self.tableView.tableHeaderView = _scrolView;
 }
 
 - (void)loadData
 {
     [[ZHQNetWorkingManager sharedManager] getDiscoverAdsWithsucces:^(id responseObject) {
-       
+        if (responseObject) {
+            //广告数据
+            NSArray *banners = responseObject[@"banners"];
+            for (NSDictionary *dic in banners) {
+                ZHQBanerModel *banner = [ZHQBanerModel mj_objectWithKeyValues:dic[@"banner_url"]];
+                [self.bannerstitle addObject:banner.title];
+                if (banner.url_list.count >0) {
+                    NSDictionary *url = banner.url_list[0];
+                    banner.url = url[@"url"];
+                    [self.bannersArray addObject:url[@"url"]];
+                }
+            }
+                        //列表数据
+            NSArray *listDic = responseObject[@"category_list"][@"category_list"];
+            for (NSDictionary *dic in listDic) {
+                ZHQDiscoverListModel *discoverModel = [ZHQDiscoverListModel mj_objectWithKeyValues:dic];
+                [self.listArray addObject:discoverModel];
+            }
+            self.scrolView.imageURLStringsGroup = self.bannersArray;
+            self.scrolView.titlesGroup = self.bannerstitle;
+            [self.tableView reloadData];
+            
+        }
         
     } withFailure:^(NSError *error) {
         
@@ -48,18 +74,45 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self.listArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ZHQDiscoverHotCell *hotcell = [tableView dequeueReusableCellWithIdentifier:@"hotCell" forIndexPath:indexPath];
-    hotcell.textLabel.text = @"请助我上头条";
+    ZHQDiscoverListModel *model = self.listArray[indexPath.row];
+    hotcell.textLabel.text = model.intro;
     return hotcell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZHQDiscoverHotViewController *hotVC = [[ZHQDiscoverHotViewController alloc]init];
+    [self.pareViewController.navigationController pushViewController:hotVC animated:YES];
+    
+}
 
+- (NSMutableArray *)listArray
+{
+    if (!_listArray) {
+        _listArray = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _listArray;
+}
 
-
+- (NSMutableArray *)bannersArray
+{
+    if (!_bannersArray) {
+        _bannersArray = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _bannersArray;
+}
+- (NSMutableArray *)bannerstitle
+{
+    if (!_bannerstitle) {
+        _bannerstitle = [NSMutableArray arrayWithCapacity:0];
+    }
+    return _bannerstitle;
+}
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.

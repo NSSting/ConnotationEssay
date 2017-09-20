@@ -16,11 +16,11 @@
 - (void)getDiscoverAdsWithsucces:(sucessBlock )succes withFailure:(failureBlock )failure
 {
     [self.baseManager GET:adsUrl parameters:@{} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSDictionary *dic = [NSDictionary dictionary];
-        NSDictionary *data = responseObject[@"data"];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        NSMutableDictionary *data = responseObject[@"data"];
         [dic setValue:data[@"rotate_banner"][@"banners"] forKey:@"banners"];
         [dic setValue:data[@"categories"] forKey:@"category_list"];
-        succes(responseObject[@"data"]);
+        succes(dic);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error);
     }];
