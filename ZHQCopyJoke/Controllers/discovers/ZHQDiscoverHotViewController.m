@@ -14,6 +14,7 @@
 #import "ZHQDiscoverListModel.h"
 #import <MJExtension.h>
 #import "ZHQBanerModel.h"
+#import "ZHQBasicTableViewController.h"
 @interface ZHQDiscoverHotViewController () <UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate>
 @property (nonatomic,strong) NSMutableArray *listArray;
 @property (nonatomic,strong) NSMutableArray *bannersArray;
@@ -86,8 +87,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZHQDiscoverHotViewController *hotVC = [[ZHQDiscoverHotViewController alloc]init];
-    [self.pareViewController.navigationController pushViewController:hotVC animated:YES];
+    NSLog(@"====>>%@",self.pareViewController.navigationController);
+     ZHQBasicTableViewController *detailVC = [[ZHQBasicTableViewController alloc]init];
+    detailVC.list_id = @"276";
+    [self.pareViewController.navigationController pushViewController:detailVC animated:YES];
     
 }
 
