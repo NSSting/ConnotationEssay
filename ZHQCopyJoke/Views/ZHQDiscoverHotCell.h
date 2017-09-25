@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHQDiscoverListModel.h"
 
 @interface ZHQDiscoverHotCell : UITableViewCell
-
+@property(nonatomic, strong) ZHQDiscoverListModel *discoverModel;
+@property (nonatomic, copy) void (^userPhotoBlock)();
 @end

@@ -25,10 +25,8 @@
     [[UINavigationBar appearance]setTitleTextAttributes:dic];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    
     //hide back button title
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
-                                                         forBarMetrics:UIBarMetricsDefault];
+
     
 }
 - (void)viewDidLoad {

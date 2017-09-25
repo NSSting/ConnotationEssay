@@ -54,7 +54,7 @@
             weakSelf.pageView.hidden =NO;
         }
     };
-    
+
 }
 - (void)loadata
 {
@@ -68,6 +68,7 @@
             if (model.type.integerValue == 1) {
                 [weakself.dataArray addObject:model.name];
                 ZHQBasicTableViewController *basicTabVC = [[ZHQBasicTableViewController alloc]init];
+                
                 basicTabVC.navigationItem.backBarButtonItem.title= @"";
                 basicTabVC.hidesBottomBarWhenPushed = YES;
                 basicTabVC.list_id = model.list_id;
@@ -102,6 +103,8 @@
     }
     return _pageView;
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

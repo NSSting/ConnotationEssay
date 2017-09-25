@@ -10,6 +10,7 @@
 		1B2085721F59069800C8A342 /* ZHQGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2085711F59069800C8A342 /* ZHQGroupModel.m */; };
 		1B2085751F5933A400C8A342 /* ZHQDislikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2085741F5933A400C8A342 /* ZHQDislikeModel.m */; };
 		1B2085781F59341600C8A342 /* ZHQImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2085771F59341600C8A342 /* ZHQImageModel.m */; };
+		1B20EB431F74C06D00AFB2C5 /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B20EB411F74C06D00AFB2C5 /* UIViewController+Swizzling.m */; };
 		1B7C59F11F4EB227000C0D65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C59F01F4EB227000C0D65 /* main.m */; };
 		1B7C59F41F4EB227000C0D65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C59F31F4EB227000C0D65 /* AppDelegate.m */; };
 		1B7C59FC1F4EB227000C0D65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7C59FB1F4EB227000C0D65 /* Assets.xcassets */; };
@@ -22,6 +23,8 @@
 		1BC1BA9C1F56617700B9F691 /* ZHQBasicTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC1BA9B1F56617700B9F691 /* ZHQBasicTableViewController.m */; };
 		1BC1BAA01F5687F700B9F691 /* ZHQCommonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC1BA9F1F5687F700B9F691 /* ZHQCommonCell.m */; };
 		1BC1BAA61F568CA800B9F691 /* UIBarButtonItem+ZHQBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC1BAA51F568CA800B9F691 /* UIBarButtonItem+ZHQBarButton.m */; };
+		1BC475E01F78AC1100707C5F /* ZHQRefreshManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC475DF1F78AC1100707C5F /* ZHQRefreshManager.m */; };
+		1BC475E31F78DA1E00707C5F /* ZHQRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC475E21F78DA1E00707C5F /* ZHQRefreshFooter.m */; };
 		1BC8CAF41F57A84500AD7C65 /* ZHQUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BC8CAF31F57A84500AD7C65 /* ZHQUser.m */; };
 		1BD108721F53E0C60065E0D4 /* ZHQHeaderOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD108711F53E0C60065E0D4 /* ZHQHeaderOptionView.m */; };
 		1BD108751F53E27F0065E0D4 /* ZHQHeaderItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BD108741F53E27F0065E0D4 /* ZHQHeaderItemView.m */; };
@@ -76,6 +79,8 @@
 		1B2085741F5933A400C8A342 /* ZHQDislikeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHQDislikeModel.m; sourceTree = "<group>"; };
 		1B2085761F59341600C8A342 /* ZHQImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHQImageModel.h; sourceTree = "<group>"; };
 		1B2085771F59341600C8A342 /* ZHQImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHQImageModel.m; sourceTree = "<group>"; };
+		1B20EB411F74C06D00AFB2C5 /* UIViewController+Swizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzling.m"; sourceTree = "<group>"; };
+		1B20EB421F74C06D00AFB2C5 /* UIViewController+Swizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Swizzling.h"; sourceTree = "<group>"; };
 		1B7C59EC1F4EB227000C0D65 /* ZHQCopyJoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZHQCopyJoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7C59F01F4EB227000C0D65 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1B7C59F21F4EB227000C0D65 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -101,6 +106,11 @@
 		1BC1BA9F1F5687F700B9F691 /* ZHQCommonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHQCommonCell.m; sourceTree = "<group>"; };
 		1BC1BAA41F568CA800B9F691 /* UIBarButtonItem+ZHQBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+ZHQBarButton.h"; sourceTree = "<group>"; };
 		1BC1BAA51F568CA800B9F691 /* UIBarButtonItem+ZHQBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+ZHQBarButton.m"; sourceTree = "<group>"; };
+		1BC475DE1F78AC1100707C5F /* ZHQRefreshManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHQRefreshManager.h; sourceTree = "<group>"; };
+		1BC475DF1F78AC1100707C5F /* ZHQRefreshManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHQRefreshManager.m; sourceTree = "<group>"; };
+		1BC475E11F78DA1E00707C5F /* ZHQRefreshFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZHQRefreshFooter.h; sourceTree = "<group>"; };
+		1BC475E21F78DA1E00707C5F /* ZHQRefreshFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHQRefreshFooter.m; sourceTree = "<group>"; };
+		1BC475E51F78E00900707C5F /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		1BC8CAF21F57A84500AD7C65 /* ZHQUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHQUser.h; sourceTree = "<group>"; };
 		1BC8CAF31F57A84500AD7C65 /* ZHQUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHQUser.m; sourceTree = "<group>"; };
 		1BC8CAF81F57B19F00AD7C65 /* Margin_UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Margin_UI.h; sourceTree = "<group>"; };
@@ -218,6 +228,7 @@
 			children = (
 				1B7C59F21F4EB227000C0D65 /* AppDelegate.h */,
 				1B7C59F31F4EB227000C0D65 /* AppDelegate.m */,
+				1BC475E41F78E00900707C5F /* imageResource */,
 				1BD1087A1F53E6F50065E0D4 /* NetWorking */,
 				1B7C5A221F4EBA35000C0D65 /* Basic */,
 				1BF250961F61175E00F97438 /* Controllers */,
@@ -299,6 +310,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		1BC475E41F78E00900707C5F /* imageResource */ = {
+			isa = PBXGroup;
+			children = (
+				1BC475E51F78E00900707C5F /* refresh.png */,
+			);
+			path = imageResource;
+			sourceTree = "<group>";
+		};
 		1BD108761F53E5050065E0D4 /* models */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,6 +354,7 @@
 			children = (
 				1BD108821F53EC540065E0D4 /* API_URL.h */,
 				1BC8CAF81F57B19F00AD7C65 /* Margin_UI.h */,
+				1BD336E31F50124C00CABC6C /* Macro.h */,
 			);
 			path = Marco;
 			sourceTree = "<group>";
@@ -348,6 +368,8 @@
 				1BD336E91F50150300CABC6C /* UIView+ZHQLayer.m */,
 				1BC1BAA41F568CA800B9F691 /* UIBarButtonItem+ZHQBarButton.h */,
 				1BC1BAA51F568CA800B9F691 /* UIBarButtonItem+ZHQBarButton.m */,
+				1B20EB421F74C06D00AFB2C5 /* UIViewController+Swizzling.h */,
+				1B20EB411F74C06D00AFB2C5 /* UIViewController+Swizzling.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -357,7 +379,8 @@
 			children = (
 				1BD336E01F50065200CABC6C /* ZHQCommonConstant.h */,
 				1BD336E11F50065200CABC6C /* ZHQCommonConstant.m */,
-				1BD336E31F50124C00CABC6C /* Macro.h */,
+				1BC475DE1F78AC1100707C5F /* ZHQRefreshManager.h */,
+				1BC475DF1F78AC1100707C5F /* ZHQRefreshManager.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -388,6 +411,8 @@
 				1BFD82E41F5E799700DB8057 /* ZHQAVPlayerManager.m */,
 				1BD8DD0B1F5D3B210029ADCD /* ZHQCustomDisplayView.h */,
 				1BD8DD0C1F5D3B210029ADCD /* ZHQCustomDisplayView.m */,
+				1BC475E11F78DA1E00707C5F /* ZHQRefreshFooter.h */,
+				1BC475E21F78DA1E00707C5F /* ZHQRefreshFooter.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -651,6 +676,7 @@
 				1BF250B31F61237100F97438 /* ZHQSubscribeCell.m in Sources */,
 				1BD108751F53E27F0065E0D4 /* ZHQHeaderItemView.m in Sources */,
 				1BC8CAF41F57A84500AD7C65 /* ZHQUser.m in Sources */,
+				1B20EB431F74C06D00AFB2C5 /* UIViewController+Swizzling.m in Sources */,
 				1BD336E21F50065200CABC6C /* ZHQCommonConstant.m in Sources */,
 				1B7C59F11F4EB227000C0D65 /* main.m in Sources */,
 				1BF250B01F61230E00F97438 /* ZHQSubscribeViewController.m in Sources */,
@@ -664,12 +690,14 @@
 				1BC1BA991F56576900B9F691 /* ZHQPageMenuView.m in Sources */,
 				1BFD82E51F5E799700DB8057 /* ZHQAVPlayerManager.m in Sources */,
 				1B7C5A251F4EBA79000C0D65 /* ZHQBasicTabBarController.m in Sources */,
+				1BC475E01F78AC1100707C5F /* ZHQRefreshManager.m in Sources */,
 				1BD336C71F4FBEF900CABC6C /* ZHQBasicNavViewController.m in Sources */,
 				1BF250B61F612ED500F97438 /* ZHQNetWorkingManager+ZHQDiscover.m in Sources */,
 				1BF250BA1F61310D00F97438 /* ZHQBanerModel.m in Sources */,
 				1B2085751F5933A400C8A342 /* ZHQDislikeModel.m in Sources */,
 				1B2085721F59069800C8A342 /* ZHQGroupModel.m in Sources */,
 				1BD1087D1F53E70A0065E0D4 /* ZHQNetWorkingManager.m in Sources */,
+				1BC475E31F78DA1E00707C5F /* ZHQRefreshFooter.m in Sources */,
 				1BC1BA961F56567100B9F691 /* CAPSPageMenu.m in Sources */,
 				1BF250AA1F6117AC00F97438 /* ZHQDiscoverHotViewController.m in Sources */,
 				1BF250A71F61175E00F97438 /* ZHQMessageViewController.m in Sources */,

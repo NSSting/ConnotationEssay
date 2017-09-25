@@ -14,8 +14,9 @@
 #import <MJExtension.h>
 #import "ZHQUserInfoViewController.h"
 #import "ZHQDiscoverHotViewController.h"
+#import "ZHQRefreshManager.h"
 
-@interface ZHQBasicTableViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface ZHQBasicTableViewController ()<UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @end
@@ -31,8 +32,9 @@
     self.tableView.rowHeight = 100;
     self.tableView.showsVerticalScrollIndicator = YES;
     [self.tableView registerClass:[ZHQCommonCell class] forCellReuseIdentifier:@"commonCell"];
+    [self.tableView addSubview:self.refreshBtn];
+    [self.tableView bringSubviewToFront:self.refreshBtn];
     [self loadData];
-    
 }
 
 - (void)loadData
@@ -84,12 +86,32 @@
     return height;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSLog(@"======%f",scrollView.contentOffset.y);
+    _refreshBtn.frame = CGRectMake(_refreshBtn.frame.origin.x, scrollView.contentOffset.y + (self.view.bounds.size.height - 100), 60, 60);
+}
 - (NSMutableArray *)dataArray
 {
     if (!_dataArray) {
         _dataArray = [NSMutableArray arrayWithCapacity:0];
     }
     return _dataArray;
+}
+
+- (UIButton *)refreshBtn
+{
+    if (!_refreshBtn) {
+        _refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_refreshBtn setImage:[UIImage imageNamed:@"home_refresh"] forState:UIControlStateNormal];
+        _refreshBtn.frame = CGRectMake(SCREEN_WIDTH - 60 - PADDING_OF_LEFT_RIGHT, self.view.bounds.size.height - 100, 60, 60);
+        [_refreshBtn addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _refreshBtn;
+}
+- (void)refreshData
+{
+    [ZHQRefreshManager beginPullRefreshForScrollView:self.tableView];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

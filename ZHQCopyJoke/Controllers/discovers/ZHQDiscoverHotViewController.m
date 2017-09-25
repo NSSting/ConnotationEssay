@@ -15,12 +15,13 @@
 #import <MJExtension.h>
 #import "ZHQBanerModel.h"
 #import "ZHQBasicTableViewController.h"
+#import "ZHQUserInfoViewController.h"
 @interface ZHQDiscoverHotViewController () <UITableViewDelegate, UITableViewDataSource,SDCycleScrollViewDelegate>
 @property (nonatomic,strong) NSMutableArray *listArray;
 @property (nonatomic,strong) NSMutableArray *bannersArray;
 @property (nonatomic,strong) NSMutableArray *bannerstitle;
 
-@property (nonatomic, strong) SDCycleScrollView *scrolView ;
+@property (nonatomic, strong) SDCycleScrollView *scrolView;
 
 @end
 
@@ -30,6 +31,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.rowHeight = 100;
     [self.tableView registerClass:[ZHQDiscoverHotCell class] forCellReuseIdentifier:@"hotCell"];
     [self loadData];
     [self setUpHeaderView];
@@ -82,16 +84,22 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ZHQDiscoverHotCell *hotcell = [tableView dequeueReusableCellWithIdentifier:@"hotCell" forIndexPath:indexPath];
     ZHQDiscoverListModel *model = self.listArray[indexPath.row];
-    hotcell.textLabel.text = model.intro;
+    hotcell.discoverModel = model;
+    WeakSelf(blockSelf);
+    ZHQUserInfoViewController *infoVC = [[ZHQUserInfoViewController alloc]init];
+    hotcell.userPhotoBlock = ^{
+        [blockSelf.pareViewController.navigationController pushViewController:infoVC animated:YES];
+    };
     return hotcell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"====>>%@",self.pareViewController.navigationController);
-     ZHQBasicTableViewController *detailVC = [[ZHQBasicTableViewController alloc]init];
-    detailVC.list_id = @"276";
-    [self.pareViewController.navigationController pushViewController:detailVC animated:YES];
     
+     ZHQBasicTableViewController *detailVC = [[ZHQBasicTableViewController alloc]init];
+     ZHQDiscoverListModel *model = self.listArray[indexPath.row];
+    detailVC.list_id = @"-104";
+    NSLog(@"==id==>%@",model.Id);
+    [self.pareViewController.navigationController pushViewController:detailVC animated:YES];
 }
 
 - (NSMutableArray *)listArray
@@ -121,8 +129,6 @@
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

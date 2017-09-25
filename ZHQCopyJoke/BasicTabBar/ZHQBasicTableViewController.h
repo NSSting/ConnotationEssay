@@ -13,4 +13,6 @@
 
 @property (nonatomic, copy) NSString *list_id;
 @property (nonatomic, strong) UIViewController *parentController;
+@property (nonatomic, strong) UIButton *refreshBtn;
+
 @end
