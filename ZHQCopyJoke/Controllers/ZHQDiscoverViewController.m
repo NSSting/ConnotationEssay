@@ -31,7 +31,6 @@
 - (void)setUpItems
 {
     
-
     UIBarButtonItem *leftItem = [UIBarButtonItem itemWithTarget:self action:@selector(searchBtnClicked) image:@"search_bar" highImage:@"search_bar"];
     self.navigationItem.leftBarButtonItem = leftItem;
     UIBarButtonItem *rightItem = [UIBarButtonItem itemWithTarget:self action:@selector(locationBtnClicked) image:@"location_bar" highImage:@"location_bar"];

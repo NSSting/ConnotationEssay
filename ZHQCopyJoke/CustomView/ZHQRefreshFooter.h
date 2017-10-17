@@ -10,4 +10,5 @@
 
 @interface ZHQRefreshFooter : MJRefreshAutoNormalFooter
 
+
 @end

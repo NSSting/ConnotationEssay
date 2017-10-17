@@ -10,18 +10,19 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <Masonry.h>
 #import <UIButton+WebCache.h>
-#import <UIImageView+WebCache.h>
 #import "ZHQCustomDisplayView.h"
+#import <NYTPhotosViewController.h>
 
-@interface ZHQCommonCell ()
+@interface ZHQCommonCell ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIButton *userPhoto;
 @property (nonatomic, strong) UILabel *userName;
 @property (nonatomic, strong) UILabel *hostLab;
 @property (nonatomic, strong) UILabel *contentLab;
 @property (nonatomic, strong) UILabel *markLab;
-@property (nonatomic, strong) UIImageView *videoView;
+@property (nonatomic, strong) UIButton *videoBtn;
 @property (nonatomic, strong) UILabel* styleLab;
+@property (nonatomic,strong) UIScrollView *coverView;
 //@property (nonatomic, strong) ZHQCustomDisplayView *playerView;
 @end
 @implementation ZHQCommonCell
@@ -72,8 +73,10 @@
     self.styleLab.layer.borderColor = [UIColor brownColor].CGColor;
     [self.contentView addSubview:self.styleLab];
     
-//    self.videoView = [[UIImageView alloc]init];
-//    [self.contentView addSubview:self.videoView];
+    self.videoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.contentView addSubview:self.videoBtn];
+    [self .videoBtn addTarget:self action:@selector(viewBigImage) forControlEvents:UIControlEventTouchUpInside];
+
 
     //布局
    
@@ -106,8 +109,14 @@
         make.top.equalTo(self.contentLab.mas_bottom).offset( 10);
         make.left.equalTo(self.contentLab.mas_left);
         make.height.mas_equalTo(20);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+//        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
         
+    }];
+    [self.videoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(10);
+        make.right.equalTo(self.contentView.mas_right).offset(-10);
+        make.top.equalTo(self.styleLab.mas_bottom).offset(5);
+        make.height.mas_equalTo(320);
     }];
    }
 
@@ -120,20 +129,21 @@
     self.styleLab.text = [NSString stringWithFormat:@"  %@  ",groupModel.category_name];
     ZHQImageModel *imageModel = groupModel.large_image;
     
-//    if (imageModel.url_list.count > 0) {
-//        NSLog(@"-width==>%@--height>>%@--url--->%@",imageModel.width,imageModel.height,imageModel.url_list[0][@"url"]);
-//        [self.videoView sd_setImageWithURL:[NSURL URLWithString:imageModel.url_list[0][@"url"]]];
-//        [self.videoView mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.equalTo(self.contentView.mas_left).offset(10);
-//            make.right.equalTo(self.contentView.mas_right).offset(-10);
-//            make.top.equalTo(self.styleLab.mas_bottom).offset(5);
-//           make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
-//        }];
-//    } else {
-//        [self.styleLab mas_updateConstraints:^(MASConstraintMaker *make) {
-//            make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
-//        }];
-//    }
+    if (imageModel.url_list.count > 0) {
+        NSLog(@"-width==>%@--height>>%@--url--->%@",imageModel.width,imageModel.height,imageModel.url_list[0][@"url"]);
+        [self.videoBtn sd_setImageWithURL:[NSURL URLWithString:imageModel.url_list[0][@"url"]] forState:UIControlStateNormal];
+
+        [self.videoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(10);
+            make.right.equalTo(self.contentView.mas_right).offset(-10);
+            make.top.equalTo(self.styleLab.mas_bottom).offset(5);
+           make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+        }];
+    } else {
+        [self.styleLab mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+        }];
+    }
 }
 - (UIButton *)userPhoto
 {
@@ -145,6 +155,24 @@
         [_userPhoto addTarget:self action:@selector(btnClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _userPhoto;
+}
+- (void)viewBigImage
+{
+    [self addSubview:self.coverView];
+    if (self.imagebigBlock) {
+        self.imagebigBlock(self.groupModel);
+    }
+    
+}
+- (UIScrollView *)coverView
+{
+    if (!_coverView) {
+        _coverView = [[UIScrollView alloc]init];
+        _coverView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        _coverView.delegate = self;
+        _coverView.showsVerticalScrollIndicator = YES;
+    }
+    return _coverView;
 }
 - (void)btnClicked
 {

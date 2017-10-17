@@ -11,5 +11,5 @@ pod 'UITableView+FDTemplateLayoutCell'
 pod 'SDCycleScrollView'
 pod 'MJRefresh'
 pod 'MBProgressHUD'
-
+pod 'NYTPhotoViewer'
 end

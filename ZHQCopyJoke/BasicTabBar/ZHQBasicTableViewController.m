@@ -15,10 +15,15 @@
 #import "ZHQUserInfoViewController.h"
 #import "ZHQDiscoverHotViewController.h"
 #import "ZHQRefreshManager.h"
+#import <MJRefresh.h>
+#import <NYTPhotosViewController.h>
+#import <Masonry.h>
 
-@interface ZHQBasicTableViewController ()<UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate>
+@interface ZHQBasicTableViewController ()<UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate,NYTPhotosViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic,strong) UIScrollView *coverView;
+
 @end
 
 @implementation ZHQBasicTableViewController
@@ -35,6 +40,13 @@
     [self.tableView addSubview:self.refreshBtn];
     [self.tableView bringSubviewToFront:self.refreshBtn];
     [self loadData];
+    WeakSelf(blockSelf);
+    self.tableView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [blockSelf loadData];
+    } ];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [blockSelf loadData];
+    }];
 }
 
 - (void)loadData
@@ -52,6 +64,9 @@
     } withFailure:^(NSError *error) {
         NSLog(@"---->>%@",error);
     }];
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+
 }
 
 #pragma mark - Table view data source
@@ -74,6 +89,13 @@
         ZHQUserInfoViewController *infoVC = [[ZHQUserInfoViewController alloc]init];
         infoVC.userModel = user;
         [weakSelf.parentController.navigationController pushViewController:infoVC animated:YES];
+    };
+    cell.imagebigBlock = ^(ZHQGroupModel *groupModel) {
+        //weakSelf.coverVie
+        if (weakSelf.coverView ) {
+            [weakSelf.view.window addSubview:weakSelf.coverView];
+            weakSelf.coverView.contentSize = CGSizeMake(SCREEN_WIDTH, groupModel.large_image.r_height.floatValue);
+        }
     };
     return cell;
 }
@@ -108,6 +130,18 @@
         [_refreshBtn addTarget:self action:@selector(refreshData) forControlEvents:UIControlEventTouchUpInside];
     }
     return _refreshBtn;
+}
+
+- (UIScrollView *)coverView
+{
+    if (!_coverView) {
+        _coverView = [[UIScrollView alloc]init];
+        _coverView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        _coverView.delegate = self;
+        _coverView.backgroundColor = [UIColor yellowColor];
+        _coverView.showsVerticalScrollIndicator = YES;
+    }
+    return _coverView;
 }
 - (void)refreshData
 {

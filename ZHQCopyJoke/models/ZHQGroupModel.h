@@ -27,6 +27,7 @@
 @property (nonatomic, strong) ZHQUser *user;
 @property (nonatomic, copy)NSString *text;
 @property (nonatomic, strong)NSArray *dislike_reason;
+@property (nonatomic, strong)NSString *is_gif;
 @property (nonatomic, copy)NSString *create_time;
 @property (nonatomic, copy)NSString *Id;
 @property (nonatomic, copy)NSString *favorite_count;

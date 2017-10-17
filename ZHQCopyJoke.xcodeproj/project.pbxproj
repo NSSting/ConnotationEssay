@@ -647,6 +647,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ZHQCopyJoke/Pods-ZHQCopyJoke-resources.sh",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/NYTPhotoViewer/Pod/Assets/ios/NYTPhotoViewerCloseButtonX.png",
+				"${PODS_ROOT}/NYTPhotoViewer/Pod/Assets/ios/NYTPhotoViewerCloseButtonX@2x.png",
+				"${PODS_ROOT}/NYTPhotoViewer/Pod/Assets/ios/NYTPhotoViewerCloseButtonX@3x.png",
+				"${PODS_ROOT}/NYTPhotoViewer/Pod/Assets/ios/NYTPhotoViewerCloseButtonXLandscape.png",
+				"${PODS_ROOT}/NYTPhotoViewer/Pod/Assets/ios/NYTPhotoViewerCloseButtonXLandscape@2x.png",
+				"${PODS_ROOT}/NYTPhotoViewer/Pod/Assets/ios/NYTPhotoViewerCloseButtonXLandscape@3x.png",
+				"${PODS_ROOT}/NYTPhotoViewer/Pod/Assets/ios",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";

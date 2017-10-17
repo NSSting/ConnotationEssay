@@ -13,5 +13,7 @@
 @interface ZHQCommonCell : UITableViewCell
 
 @property (nonatomic, copy)void (^userInfoBlock)(ZHQUser *user);//点击头像回调
+@property (nonatomic, copy)void (^imagebigBlock)(ZHQGroupModel*groupModel);//点击图片回调
+
 @property (nonatomic, strong) ZHQGroupModel*groupModel;
 @end
