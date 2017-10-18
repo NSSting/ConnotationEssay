@@ -81,7 +81,7 @@
             loadMoreCallBackBlock();
         }
     }];
-    [footer setTitle:@"" forState:MJRefreshStateIdle];
+    [footer setTitle:@"正在刷新数据" forState:MJRefreshStateIdle];
     [footer setTitle:@"内涵正在为您加载数据" forState:MJRefreshStateRefreshing];
     [footer setTitle:@"没有更多了~" forState:MJRefreshStateNoMoreData];
     footer.stateLabel.textColor = [UIColor colorWithRed:90 green:90 blue:90 alpha:1];

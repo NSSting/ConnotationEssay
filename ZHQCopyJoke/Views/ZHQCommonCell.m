@@ -23,6 +23,8 @@
 @property (nonatomic, strong) UIButton *videoBtn;
 @property (nonatomic, strong) UILabel* styleLab;
 @property (nonatomic,strong) UIScrollView *coverView;
+@property (nonatomic, assign) BOOL isBig;
+
 //@property (nonatomic, strong) ZHQCustomDisplayView *playerView;
 @end
 @implementation ZHQCommonCell
@@ -76,6 +78,8 @@
     self.videoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.contentView addSubview:self.videoBtn];
     [self .videoBtn addTarget:self action:@selector(viewBigImage) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.isBig = NO;
 
 
     //布局
@@ -158,19 +162,41 @@
 }
 - (void)viewBigImage
 {
-    [self addSubview:self.coverView];
+    self.isBig = !self.isBig;
+    if (self.isBig) {
+        UIWindow *window = [UIApplication sharedApplication].delegate.window;
+        [window addSubview:self.coverView];
+        [window addSubview:self.videoBtn];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [UIView animateWithDuration:1 animations:^{
+            self.videoBtn.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT /2);
+             self.videoBtn.bounds = CGRectMake(0, 0, SCREEN_WIDTH,SCREEN_HEIGHT);
+        }];
+    } else {
+        [self.coverView removeFromSuperview];
+        [self addSubview:self.videoBtn];
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.videoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.contentView.mas_left).offset(10);
+                make.right.equalTo(self.contentView.mas_right).offset(-10);
+                make.top.equalTo(self.styleLab.mas_bottom).offset(5);
+                make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+            }];        }];
+        }
     if (self.imagebigBlock) {
-        self.imagebigBlock(self.groupModel);
+        self.imagebigBlock(self.coverView);
     }
-    
 }
-- (UIScrollView *)coverView
+
+- (UIView *)coverView
 {
     if (!_coverView) {
         _coverView = [[UIScrollView alloc]init];
-        _coverView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         _coverView.delegate = self;
-        _coverView.showsVerticalScrollIndicator = YES;
+        _coverView.userInteractionEnabled = YES;
+        _coverView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        _coverView.backgroundColor = [UIColor blackColor];
+        _coverView.bounces = NO;
     }
     return _coverView;
 }

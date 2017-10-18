@@ -11,6 +11,7 @@
 		1B2085751F5933A400C8A342 /* ZHQDislikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2085741F5933A400C8A342 /* ZHQDislikeModel.m */; };
 		1B2085781F59341600C8A342 /* ZHQImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B2085771F59341600C8A342 /* ZHQImageModel.m */; };
 		1B20EB431F74C06D00AFB2C5 /* UIViewController+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B20EB411F74C06D00AFB2C5 /* UIViewController+Swizzling.m */; };
+		1B589BE71F95DC62003F53DD /* TAImageBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B589BE61F95DC62003F53DD /* TAImageBrowser.m */; };
 		1B7C59F11F4EB227000C0D65 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C59F01F4EB227000C0D65 /* main.m */; };
 		1B7C59F41F4EB227000C0D65 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C59F31F4EB227000C0D65 /* AppDelegate.m */; };
 		1B7C59FC1F4EB227000C0D65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B7C59FB1F4EB227000C0D65 /* Assets.xcassets */; };
@@ -81,6 +82,8 @@
 		1B2085771F59341600C8A342 /* ZHQImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHQImageModel.m; sourceTree = "<group>"; };
 		1B20EB411F74C06D00AFB2C5 /* UIViewController+Swizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Swizzling.m"; sourceTree = "<group>"; };
 		1B20EB421F74C06D00AFB2C5 /* UIViewController+Swizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Swizzling.h"; sourceTree = "<group>"; };
+		1B589BE51F95DC62003F53DD /* TAImageBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAImageBrowser.h; sourceTree = "<group>"; };
+		1B589BE61F95DC62003F53DD /* TAImageBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAImageBrowser.m; sourceTree = "<group>"; };
 		1B7C59EC1F4EB227000C0D65 /* ZHQCopyJoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZHQCopyJoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B7C59F01F4EB227000C0D65 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1B7C59F21F4EB227000C0D65 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 			children = (
 				1BC1BA941F56567100B9F691 /* CAPSPageMenu.h */,
 				1BC1BA951F56567100B9F691 /* CAPSPageMenu.m */,
+				1B589BE51F95DC62003F53DD /* TAImageBrowser.h */,
+				1B589BE61F95DC62003F53DD /* TAImageBrowser.m */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -703,6 +708,7 @@
 				1BF250BA1F61310D00F97438 /* ZHQBanerModel.m in Sources */,
 				1B2085751F5933A400C8A342 /* ZHQDislikeModel.m in Sources */,
 				1B2085721F59069800C8A342 /* ZHQGroupModel.m in Sources */,
+				1B589BE71F95DC62003F53DD /* TAImageBrowser.m in Sources */,
 				1BD1087D1F53E70A0065E0D4 /* ZHQNetWorkingManager.m in Sources */,
 				1BC475E31F78DA1E00707C5F /* ZHQRefreshFooter.m in Sources */,
 				1BC1BA961F56567100B9F691 /* CAPSPageMenu.m in Sources */,
@@ -798,7 +804,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -840,7 +846,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

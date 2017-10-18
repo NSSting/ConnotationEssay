@@ -22,6 +22,7 @@
 @interface ZHQBasicTableViewController ()<UITableViewDelegate, UITableViewDataSource,UIScrollViewDelegate,NYTPhotosViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic,strong) UIScrollView *coverView;
 
 @end
@@ -91,10 +92,12 @@
         [weakSelf.parentController.navigationController pushViewController:infoVC animated:YES];
     };
     cell.imagebigBlock = ^(ZHQGroupModel *groupModel) {
-        //weakSelf.coverVie
-        if (weakSelf.coverView ) {
+        //判断大图视图是否存在
+        if (self.coverView) {
             [weakSelf.view.window addSubview:weakSelf.coverView];
             weakSelf.coverView.contentSize = CGSizeMake(SCREEN_WIDTH, groupModel.large_image.r_height.floatValue);
+        } else {
+            [weakSelf.coverView removeFromSuperview];
         }
     };
     return cell;
@@ -131,7 +134,13 @@
     }
     return _refreshBtn;
 }
-
+- (UIImageView *)imageView
+{
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc]init];
+    }
+    return _imageView;
+}
 - (UIScrollView *)coverView
 {
     if (!_coverView) {
@@ -139,7 +148,6 @@
         _coverView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         _coverView.delegate = self;
         _coverView.backgroundColor = [UIColor yellowColor];
-        _coverView.showsVerticalScrollIndicator = YES;
     }
     return _coverView;
 }
