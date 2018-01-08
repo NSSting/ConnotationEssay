@@ -12,6 +12,8 @@
 
 + (UIBarButtonItem *)itemWithTarget:(id)target action:(SEL)action image:(NSString *)image highImage:(NSString *)highImage
 {
+    UIView *bgView = [[UIView alloc]initWithFrame: CGRectMake(0, 0, 60, 44)];
+    
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 0, 44, 44);
     btn.layer.masksToBounds = YES;
@@ -19,8 +21,9 @@
     // 设置图片
     [btn setImage:[UIImage imageNamed:image]  forState:UIControlStateNormal];
     // 设置尺寸
+    [bgView addSubview:btn];
     
-    return [[UIBarButtonItem alloc] initWithCustomView:btn];
+    return [[UIBarButtonItem alloc] initWithCustomView:bgView];
 
 }
 @end

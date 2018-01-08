@@ -7,8 +7,13 @@
 //
 
 #import "ZHQMessageViewController.h"
+#import "ZHQCheckViewController.h"
+#import <AVKit/AVKit.h>
+#import <AVFoundation/AVFoundation.h>
+#import "ZHQAVPlayerView.h"
+@interface ZHQMessageViewController ()<UIGestureRecognizerDelegate>
 
-@interface ZHQMessageViewController ()
+
 
 @end
 
@@ -17,22 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"消息";
-    // Do any additional setup after loading the view.
+    ZHQAVPlayerView *playView =[[ZHQAVPlayerView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 300)];
+    playView.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:playView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -9,7 +9,6 @@
 #import "ZHQHomeViewController.h"
 #import "ZHQSegmentView.h"
 #import "ZHQPageMenuView.h"
-#import "ZHQHeaderOptionView.h"
 #import "ZHQBasicNavViewController.h"
 #import "ZHQNetWorkingManager.h"
 #import "ZHQNetWorkingManager+ZHQHome.h"
@@ -19,7 +18,6 @@
 
 @interface ZHQHomeViewController ()
 @property (nonatomic, strong) ZHQPageMenuView *pageView;
-@property (nonatomic, strong) ZHQHeaderOptionView *headerView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *controllers;
@@ -68,7 +66,6 @@
             if (model.type.integerValue == 1) {
                 [weakself.dataArray addObject:model.name];
                 ZHQBasicTableViewController *basicTabVC = [[ZHQBasicTableViewController alloc]init];
-                
                 basicTabVC.navigationItem.backBarButtonItem.title= @"";
                 basicTabVC.hidesBottomBarWhenPushed = YES;
                 basicTabVC.list_id = model.list_id;

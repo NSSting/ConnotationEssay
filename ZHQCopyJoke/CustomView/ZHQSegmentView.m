@@ -40,7 +40,7 @@
             btn.titleLabel.font = [UIFont systemFontOfSize:15];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             lastBtn = (UIButton *)[self viewWithTag:1];
-            lastBtn.backgroundColor = [UIColor blueColor];
+            lastBtn.backgroundColor = COLOR_APP_RED;
             }
     }
 }
@@ -48,7 +48,7 @@
 -(void)btnClicked:(UIButton *)btn
 {
     lastBtn.backgroundColor = [UIColor whiteColor];
-    btn.backgroundColor = [UIColor blueColor];
+    btn.backgroundColor = COLOR_APP_RED;
     if (self.segmentItemClickedBlock) {
         self.segmentItemClickedBlock(self,btn);
     }

@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic,strong) UIScrollView *coverView;
+@property (nonatomic,assign) BOOL isMore;
 
 @end
 
@@ -40,13 +41,16 @@
     [self.tableView registerClass:[ZHQCommonCell class] forCellReuseIdentifier:@"commonCell"];
     [self.tableView addSubview:self.refreshBtn];
     [self.tableView bringSubviewToFront:self.refreshBtn];
+    self.isMore = NO;
     [self loadData];
     WeakSelf(blockSelf);
     self.tableView.mj_header =[MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [blockSelf loadData];
+        [blockSelf.tableView.mj_header endRefreshing];
     } ];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [blockSelf loadData];
+        if (blockSelf.isMore) {
+            [blockSelf loadData];
+        }
     }];
 }
 
@@ -55,6 +59,7 @@
     
     [[ZHQNetWorkingManager sharedManager]getNewListWithListId:self.list_id WithSuccess:^(id responseObject) {
         NSArray *datas = responseObject[@"data"];
+        self.isMore = [responseObject[@"has_more"] boolValue];
         if (datas.count > 0) {
             for (NSDictionary *dic in responseObject[@"data"]) {
                 ZHQGroupModel*group = [ZHQGroupModel mj_objectWithKeyValues: dic[@"group"]];
@@ -91,15 +96,7 @@
         infoVC.userModel = user;
         [weakSelf.parentController.navigationController pushViewController:infoVC animated:YES];
     };
-    cell.imagebigBlock = ^(ZHQGroupModel *groupModel) {
-        //判断大图视图是否存在
-        if (self.coverView) {
-            [weakSelf.view.window addSubview:weakSelf.coverView];
-            weakSelf.coverView.contentSize = CGSizeMake(SCREEN_WIDTH, groupModel.large_image.r_height.floatValue);
-        } else {
-            [weakSelf.coverView removeFromSuperview];
-        }
-    };
+
     return cell;
 }
 

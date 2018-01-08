@@ -10,7 +10,6 @@
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <Masonry.h>
 #import <UIButton+WebCache.h>
-#import "ZHQCustomDisplayView.h"
 #import <NYTPhotosViewController.h>
 
 @interface ZHQCommonCell ()<UIScrollViewDelegate>
@@ -25,7 +24,6 @@
 @property (nonatomic,strong) UIScrollView *coverView;
 @property (nonatomic, assign) BOOL isBig;
 
-//@property (nonatomic, strong) ZHQCustomDisplayView *playerView;
 @end
 @implementation ZHQCommonCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -80,8 +78,6 @@
     [self .videoBtn addTarget:self action:@selector(viewBigImage) forControlEvents:UIControlEventTouchUpInside];
     
     self.isBig = NO;
-
-
     //布局
    
     [self.markLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -131,10 +127,20 @@
     self.userName.text = groupModel.user.name;
     self.contentLab.text = groupModel.text;
     self.styleLab.text = [NSString stringWithFormat:@"  %@  ",groupModel.category_name];
+    
+    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:groupModel.text];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+    style.lineSpacing = 0;
+    UIFont *font = [UIFont systemFontOfSize:14];
+    [attributeString addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, groupModel.text.length)];
+    [attributeString addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, groupModel.text.length)];
+    NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
+    CGRect rect = [attributeString boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 30, CGFLOAT_MAX) options:options context:nil];
+    NSLog(@"------height==>%f",rect.size.height);
+
     ZHQImageModel *imageModel = groupModel.large_image;
     
     if (imageModel.url_list.count > 0) {
-        NSLog(@"-width==>%@--height>>%@--url--->%@",imageModel.width,imageModel.height,imageModel.url_list[0][@"url"]);
         [self.videoBtn sd_setImageWithURL:[NSURL URLWithString:imageModel.url_list[0][@"url"]] forState:UIControlStateNormal];
 
         [self.videoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -181,11 +187,10 @@
                 make.right.equalTo(self.contentView.mas_right).offset(-10);
                 make.top.equalTo(self.styleLab.mas_bottom).offset(5);
                 make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
-            }];        }];
+            }];
+        }];
         }
-    if (self.imagebigBlock) {
-        self.imagebigBlock(self.coverView);
-    }
+
 }
 
 - (UIView *)coverView
@@ -208,8 +213,6 @@
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end
