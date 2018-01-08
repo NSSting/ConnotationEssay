@@ -12,16 +12,5 @@
 
 @interface ZHQAVPlayerView : UIView
 
-{
-    AVPlayer *_player;
-}
-@property (nonatomic, strong) UIButton *playBtn;
-@property (nonatomic, assign) BOOL isPlay;
-@property (nonatomic, strong) UISlider *progressSlider;
-@property (nonatomic, weak) NSTimer *playerTimer;
-@property (nonatomic,strong) UITapGestureRecognizer *tap;
-@property (nonatomic, assign) CGFloat fps;
-@property (nonatomic, assign) CGFloat duration;
-
 - (instancetype)initWithFrame:(CGRect)frame;
 @end

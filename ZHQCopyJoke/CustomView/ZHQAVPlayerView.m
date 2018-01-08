@@ -8,7 +8,16 @@
 
 #import "ZHQAVPlayerView.h"
 @interface ZHQAVPlayerView() <UIGestureRecognizerDelegate>
-
+{
+    AVPlayer *_player;
+}
+@property (nonatomic, assign) BOOL isPlay;//播放状态
+@property (nonatomic, strong) UIButton *playBtn;//播放暂停按键
+@property (nonatomic, strong) UISlider *progressSlider;//播放进度条
+@property (nonatomic, weak) NSTimer *playerTimer;//播放进度计时器
+@property (nonatomic, strong) UITapGestureRecognizer *tap;//进度滑动手势
+@property (nonatomic, assign) CGFloat fps;//帧率
+@property (nonatomic, assign) CGFloat duration;//视频总帧长
 @end
 
 @implementation ZHQAVPlayerView
@@ -28,16 +37,14 @@
     // 1、获取媒体资源地址
     NSString *videoStr = @"http://ic.snssdk.com/neihan/video/playback/?video_id=f58a655b49f642fbb05b4ec603e9b9ec&quality=480p&line=0&is_gif=0&device_platform=.mp4";
     NSURL *videoUrl = [NSURL URLWithString:videoStr];
-    
     // 2、创建AVPlayerItem
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithURL:videoUrl];
-    
     // 3、根据AVPlayerItem创建媒体播放器
     _player = [AVPlayer playerWithPlayerItem:playerItem];
     // 4、创建AVPlayerLayer，用于呈现视频
     AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:_player];
     // 5、设置显示大小和位置
-    playerLayer.frame = CGRectMake(PADDING_OF_LEFT_RIGHT, PADDING_OF_LEFT_RIGHT, frame.size.width, 300);
+    playerLayer.frame = CGRectMake(PADDING_OF_LEFT_RIGHT, PADDING_OF_LEFT_RIGHT, frame.size.width - PADDING_OF_LEFT_RIGHT *2, 230);
     // 6、设置拉伸模式
     playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
     // 7、获取播放持续时间
@@ -47,7 +54,6 @@
     //帧率
     self.fps = [[[playerItem.asset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] nominalFrameRate];
     self.duration = CMTimeGetSeconds(playerItem.asset.duration);//总帧长
-    
     //注册通知
      [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(runLoopTheMovie:) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
 }
@@ -104,8 +110,7 @@
 {
     if (!_playBtn) {
         _playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _playBtn.center = CGPointMake(SCREEN_WIDTH/2, 150);
-        _playBtn.bounds = CGRectMake(0, 0, 100, 60);
+        _playBtn.frame = CGRectMake(PADDING_OF_LEFT_RIGHT, 220, 20, 15);
         [_playBtn setImage:[UIImage imageNamed:@"play_btn"] forState:UIControlStateNormal];
         [_playBtn addTarget:self action:@selector(videoPlay) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -114,7 +119,7 @@
 - (UISlider *)progressSlider
 {
     if (!_progressSlider) {
-        _progressSlider = [[UISlider alloc]initWithFrame:CGRectMake(PADDING_OF_LEFT_RIGHT,350 , SCREEN_WIDTH - PADDING_OF_LEFT_RIGHT *2, 15)];
+        _progressSlider = [[UISlider alloc]initWithFrame:CGRectMake(PADDING_OF_LEFT_RIGHT + 30 ,220 , SCREEN_WIDTH - PADDING_OF_LEFT_RIGHT *2 - 30, 15)];
         [_progressSlider setThumbImage:[UIImage imageNamed:@"slider_dian"] forState:UIControlStateNormal];
         _progressSlider.tintColor = COLOR_APP_RED;
         [_progressSlider addTarget:self action:@selector(sliderChange) forControlEvents:UIControlEventValueChanged];
@@ -128,8 +133,8 @@
     [_playerTimer invalidate];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     _player = nil;
-    //    _player.currentItem.asset.cancelLoading();
-    //    _player.currentItem.cancelPendingSeeks();
+//        _player.currentItem.asset.cancelLoading();
+//        _player.currentItem.cancelPendingSeeks();
 }
 
 @end
